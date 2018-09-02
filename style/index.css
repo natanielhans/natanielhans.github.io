@@ -194,6 +194,7 @@ body {
 		margin-left: 0px;
 		height: 1px;
 		width: 95%;
+		max-width: 380px;
 		background-color: #ccc;
 	}
 	
