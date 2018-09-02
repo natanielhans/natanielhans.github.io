@@ -1,0 +1,211 @@
+body {
+	background-color: rgb(255, 255, 255);
+	margin: 0;
+	padding: 0;
+	color: #123e74;
+	font-family: Verdana;
+}
+
+#myName {
+	font-family: "Century Gothic";
+	font-weight: 50;
+}
+
+#myJob {
+	font-family: "Century Gothic";
+	margin-top: -5px;
+}
+
+#creidsLink {
+	color: #f7951f;
+	text-decoration: none;
+}
+
+/* Desktops and laptops */
+@media screen and (min-width : 1024px) {
+	#container {
+		width: 1024px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#image-container {
+		width: 380px;
+		height: 380px;
+		margin-left: 50px;
+		margin-top: 100px;
+		float: left;
+	}
+
+	#information-container {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 230px;
+		width: 564px;
+		text-align: center;
+	}
+
+	#myName {
+		margin-bottom: 3px;
+		letter-spacing: 7px;
+		word-spacing: 12px;
+	}
+
+	#line-1 {
+		display: inline-block;
+		vertical-align: top;
+		height: 1px;
+		width: 555px;
+		background-color: #ccc;
+	}
+
+	#myJob {
+		letter-spacing: 1px;
+	}
+
+	#contact {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 25px;
+		text-align: center;
+		width: 425px;
+		font-size: 12px;
+	}
+
+	#quot {
+		display: inline-block;
+		margin-top: 10px;
+		font-style: italic;
+		font-size: 11px;
+	}
+
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+	#container {
+		width: 768px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	#image-container {
+		width: 280px;
+		margin-top: 50px;
+		float: left;
+	}
+
+	#myPict {
+		width: 280px;
+	}
+
+	#information-container {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 180px;
+		width: 488px;
+		text-align: center;
+	}
+
+	#myName {
+		letter-spacing: 5px;
+		margin-bottom: 3px;
+		font-size: 25px;
+	}
+
+	#line-1 {
+		display: inline-block;
+		vertical-align: top;
+		height: 1px;
+		width: 432px;
+		background-color: #ccc;
+	}
+
+	#myJob {
+		font-size: 13px;
+		margin-top: -10px;
+	}
+
+	#contact {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 15px;
+		text-align: center;
+		width: 332px;
+		font-size: 11px;
+	}
+
+	#quot {
+		display: inline-block;
+		margin-top: 10px;
+		font-style: italic;
+		font-size: 10px;
+	}
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+	#container {
+		width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	#image-container {
+		width: 380px;
+		margin-top: 30px;
+		margin-left: auto;
+		margin-right: auto;
+		float: none;
+	}
+
+	#myPict {
+		width: 250px;
+	}
+
+	#information-container {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 20px;
+		width: 400px;
+		text-align: center;
+	}
+
+	#myName {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 0px;
+		margin-top: 20px;
+		margin-bottom: 3px;
+		font-size: 20px;
+	}
+
+	#line-1 {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 0px;
+		height: 1px;
+		width: 400px;
+		background-color: #ccc;
+	}
+	
+	#contact {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 0px;
+		margin-top: 25px;
+		text-align: center;
+		width: 400px;
+		font-size: 11px;
+	}
+
+	#quot {
+		display: inline-block;
+		margin-top: 10px;
+		font-style: italic;
+		font-size: 11px;
+		margin-top: 30px;
+	}
+}
