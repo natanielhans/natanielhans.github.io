@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Century Gothic";
+    src: url(../font/GOTHIC.TTF);
+}
+
 body {
 	background-color: rgb(255, 255, 255);
 	margin: 0;
@@ -147,7 +152,7 @@ body {
 /* Mobile */
 @media screen and (max-width: 768px) {
 	#container {
-		width: 400px;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
@@ -169,7 +174,7 @@ body {
 		display: inline-block;
 		vertical-align: top;
 		margin-top: 20px;
-		width: 400px;
+		width: 100%;
 		text-align: center;
 	}
 
@@ -180,6 +185,7 @@ body {
 		margin-top: 20px;
 		margin-bottom: 3px;
 		font-size: 20px;
+		letter-spacing: 2px;
 	}
 
 	#line-1 {
@@ -187,7 +193,7 @@ body {
 		vertical-align: top;
 		margin-left: 0px;
 		height: 1px;
-		width: 400px;
+		width: 98%;
 		background-color: #ccc;
 	}
 	
