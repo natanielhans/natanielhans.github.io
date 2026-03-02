@@ -1,28 +1,876 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hans Nataniel | Full Stack Developer & AI Automation Lead</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" type="text/css" href="style/index.css">
+        :root {
+            --bg-primary: #0F1419;
+            --bg-secondary: #1a1f2e;
+            --bg-tertiary: #242d3d;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --glass-light: rgba(255, 255, 255, 0.05);
+            --glass-medium: rgba(255, 255, 255, 0.08);
+            --glass-dark: rgba(0, 0, 0, 0.3);
+        }
 
-    <title>About me</title>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(45deg, transparent 0%, rgba(15, 20, 25, 0.5) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-photo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-frame {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--glass-medium), var(--glass-light));
+            border: 2px solid var(--glass-light);
+            backdrop-filter: blur(10px);
+            animation: slideRight 0.8s ease-out 0.3s both;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.2));
+            filter: blur(20px);
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: slideUp 0.8s ease-out 0.2s both;
+            text-align: left;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan), var(--accent-amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-role {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.5s both;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-medium);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-light);
+            border-color: var(--accent-green);
+        }
+
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .role-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, var(--glass-medium) 0%, var(--glass-light) 100%);
+            border: 1px solid var(--glass-light);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border-top: 1px solid var(--glass-light);
+            border-bottom: 1px solid var(--glass-light);
+        }
+
+        .philosophy-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--glass-medium) 0%, var(--glass-light) 100%);
+            border: 1px solid var(--glass-light);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.1);
+            opacity: 0;
+        }
+
+        .philosophy-icon {
+            font-size: 48px;
+            margin-bottom: 30px;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .philosophy-quote {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin: 0;
+            font-style: italic;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        .philosophy-author {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--accent-green);
+            font-weight: 600;
+            letter-spacing: 1px;
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 120px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+        }
+
+        .tech-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .tech-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tech-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-message {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            line-height: 1.6;
+            opacity: 0;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .contact-link {
+            padding: 25px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid var(--glass-light);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--glass-medium) 0%, var(--glass-light) 100%);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        .contact-link-icon {
+            font-size: 28px;
+        }
+
+        .contact-link-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .contact-link-value {
+            font-size: 12px;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--glass-light);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(1.05);
+            }
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .photo-frame {
+                width: 250px;
+                height: 250px;
+            }
+
+            .glass-card {
+                padding: 25px;
+            }
+
+            .philosophy-content {
+                padding: 40px 25px;
+            }
+
+            .philosophy-quote {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .philosophy-icon {
+                font-size: 36px;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Intersection Observer for animations */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .slide-in-left {
+            animation: slideLeft 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            animation: slideRight 0.8s ease-out forwards;
+        }
+
+        /* Child element stagger animations */
+        .stagger-child {
+            opacity: 0;
+        }
+
+        .stagger-child.fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stagger-child:nth-child(1).fade-in { animation-delay: 0.1s; }
+        .stagger-child:nth-child(2).fade-in { animation-delay: 0.2s; }
+        .stagger-child:nth-child(3).fade-in { animation-delay: 0.3s; }
+        .stagger-child:nth-child(4).fade-in { animation-delay: 0.4s; }
+        .stagger-child:nth-child(5).fade-in { animation-delay: 0.5s; }
+        .stagger-child:nth-child(6).fade-in { animation-delay: 0.6s; }
+    </style>
 </head>
 <body>
-    <div id="container">
-        <div id="image-container">
-            <div id="me"><img src="img/hans.png" alt="It's Me" id="myPict"></div>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">Hans Nataniel</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <div id="information-container">
-            <h1 id="myName">Hans Christian Nataniel</h1>
-            <div id="line-1"></div>
-            <div id="myJob">Co-Owner &amp; System Development Director at <a href="http://www.creids.net" target="_blank" id="creidsLink">CREIDS</a></div>
-            <address id="contact">
-                <span>P. +62 822 4525 4555 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E. nataniel.hans@gmail.com</span><br>
-                <q id="quot">I believe that everything is in God's hands.<br>He has planned and measured everything for me.<br>I know that I lean my life on the greatest hands.</q>
-            </address>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-role">Full Stack Developer</div>
+                    <h1>Hello, I'm <br><span>Hans Nataniel</span></h1>
+                    <p class="hero-subtitle">Empowering businesses through intelligent automation & scalable systems</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                        <a href="https://creids.id/en/work" target="_blank" class="btn btn-secondary">View My Work</a>
+                    </div>
+                </div>
+                <div class="hero-photo">
+                    <div class="photo-glow"></div>
+                    <div class="photo-frame">
+                        <img src="photo.png" alt="Hans Nataniel">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p class="role-subtitle">Co-Owner & System Development Director at <strong style="color: #f7951f;">CREIDS</strong></p>
+            </div>
+            <div class="glass-card">
+                <p class="about-text">
+                    With <strong>10+ years of experience</strong> leading full-stack development teams, I specialize in architecting scalable systems and implementing intelligent automation solutions that drive business growth.
+                    <br><br>
+                    My expertise spans modern web technologies with a strong focus on <strong>Laravel backend architecture</strong> and <strong>AI-powered automation workflows</strong>. I believe in writing clean, maintainable code and fostering collaborative engineering cultures that deliver exceptional results.
+                    <br><br>
+                    Currently, I'm focused on helping businesses harness the power of AI automation to streamline operations, improve decision-making, and unlock new growth opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <div class="philosophy-icon">✨</div>
+                <blockquote class="philosophy-quote">
+                    I believe that everything is in God's hands.<br>
+                    He has planned and orchestrated everything for me.<br>
+                    I know that I entrust my life to the Almighty and in His perfect will.<br>
+                    Christ is my life. I am a vessel of His love and grace, and I strive to express Him in all that I do.
+                </blockquote>
+                <p class="philosophy-author">— Hans Nataniel</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="tech">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tech Stack</h2>
+                <p>Tools and technologies I work with daily</p>
+            </div>
+            <div class="tech-grid">
+                <div class="glass-card tech-item">
+                    <div class="tech-icon">🐘</div>
+                    <div class="tech-name">Laravel</div>
+                    <div class="tech-desc">Modern PHP framework for robust backend systems</div>
+                </div>
+                <div class="glass-card tech-item">
+                    <div class="tech-icon">🤖</div>
+                    <div class="tech-name">AI Automation</div>
+                    <div class="tech-desc">Intelligent workflows and ML-powered solutions</div>
+                </div>
+                <div class="glass-card tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">Full Stack</div>
+                    <div class="tech-desc">Complete end-to-end development expertise</div>
+                </div>
+                <div class="glass-card tech-item">
+                    <div class="tech-icon">🏗️</div>
+                    <div class="tech-name">System Design</div>
+                    <div class="tech-desc">Scalable architecture and infrastructure</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container contact-container">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>Reach out and let's create something amazing together</p>
+            </div>
+            <p class="contact-message">
+                I'm always open to discussing new projects, innovative ideas, or opportunities to be part of your vision.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:hans@creids.id" class="contact-link">
+                    <div class="contact-link-icon">✉️</div>
+                    <div class="contact-link-label">Email</div>
+                    <div class="contact-link-value">hans@creids.id</div>
+                </a>
+                <a href="https://github.com/natanielhans" target="_blank" class="contact-link">
+                    <div class="contact-link-icon">💻</div>
+                    <div class="contact-link-label">GitHub</div>
+                    <div class="contact-link-value">@natanielhans</div>
+                </a>
+                <a href="https://instagram.com/hans_nataniel" target="_blank" class="contact-link">
+                    <div class="contact-link-icon">📸</div>
+                    <div class="contact-link-label">Instagram</div>
+                    <div class="contact-link-value">@hans_nataniel</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Hans Nataniel. Crafted with intention and modern web technology.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add fade-in animation to the element
+                    entry.target.classList.add('fade-in');
+
+                    // If element has stagger children, animate them too
+                    const children = entry.target.querySelectorAll('.stagger-child');
+                    if (children.length > 0) {
+                        children.forEach(child => {
+                            child.classList.add('fade-in');
+                        });
+                    }
+
+                    // Stop observing once animation is triggered
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.section-header, .glass-card, .tech-item, .contact-link, .contact-message, .philosophy-content').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe tech-grid items as stagger children
+        document.querySelectorAll('.tech-grid .tech-item').forEach(item => {
+            item.classList.add('stagger-child');
+            observer.unobserve(item);
+            observer.observe(item.parentElement);
+        });
+
+        // Observe contact links as stagger children
+        document.querySelectorAll('.contact-links .contact-link').forEach(link => {
+            link.classList.add('stagger-child');
+            observer.unobserve(link);
+            observer.observe(link.parentElement);
+        });
+
+        // Observe philosophy elements as stagger children
+        document.querySelectorAll('.philosophy-content > *').forEach(el => {
+            el.classList.add('stagger-child');
+        });
+
+        // Smooth navigation with anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax scroll effect on background
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            document.body.style.setProperty('--scroll', scrollPercent);
+        });
+    </script>
 </body>
 </html>
